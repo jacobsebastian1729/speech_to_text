@@ -3,6 +3,7 @@
 import os
 from dotenv import load_dotenv
 import google.generativeai as genai
+from ai_receptionist.audio.tts import speak
 
 # Load API key from .env file
 load_dotenv()
@@ -24,9 +25,13 @@ def polish_text(text):
     prompt = f"Polish this sentence: {text}"
     try:
         response = model.generate_content(prompt)
-        return response.text.strip()
+        polished = response.text.strip()
+        speak(polished)
+        return polished
     except Exception as e:
-        return f"[Gemini Error]: {e}"
+        error_msg = f"[Gemini Error]: {e}"
+        speak("Sorry, there was an error processing your request.")  # ✅ Speak error
+        return error_msg
 
 # Test code (run this file directly to test)
 if __name__ == "__main__":
