@@ -22,6 +22,10 @@ model = genai.GenerativeModel(model_name=model_name_to_use)
 
 def polish_text(text):
     """Send input text to Gemini and return polished version."""
+    if not text.strip() or len(text.strip().split()) < 2:
+        dots = ".........."
+        speak(dots)
+        return dots
     prompt = f"Polish this sentence: {text}"
     try:
         response = model.generate_content(prompt)

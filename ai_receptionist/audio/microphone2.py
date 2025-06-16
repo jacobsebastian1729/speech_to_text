@@ -5,7 +5,7 @@ import sys
 import json
 import os
 from vosk import Model, KaldiRecognizer
-from llm.gemini_client import polish_text
+from ai_receptionist.llm.gemini_client1 import polish_text
 #import noisereduce as nr
 
 # Configuration

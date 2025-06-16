@@ -21,7 +21,7 @@ engine.setProperty('voice', 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech\\Vo
 
 
 # Optional: adjust speech rate and volume
-engine.setProperty('rate', 102)    # Default ~200
+engine.setProperty('rate', 130)    # Default ~200
 engine.setProperty('volume', 1)  # Max volume
 
 #engine.say("Initializing voice.")  # Hidden pre-buffer
@@ -32,13 +32,16 @@ def speak(text):
     if not text:
         return
     #time.sleep(1)
+    engine.say("hmmm ")           # Dummy warm-up
+    engine.runAndWait()
+    time.sleep(0.1) 
     engine.say(text)
     engine.runAndWait()
 
 #testing code(run this file directly to test)
 if __name__ == "__main__":
     #test_input = input("enter a sentence to speak: ")
-    test_input = "Hmmm     hello! how are you, how can i help you?"
+    test_input = "hello! how are you, how can i help you?"
     #test_input = "                     " + test_input
     speak(test_input)
     print("done speech")
